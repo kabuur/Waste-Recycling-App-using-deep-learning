@@ -1,0 +1,15 @@
+<!-- predictor/templates/predictor/result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h2>Prediction Result</h2>
+    <img src="{{ img_url }}" alt="Uploaded Image">
+    <p>Prediction: {{ prediction }}</p>
+    <a href="{% url 'image_upload' %}">Upload another image</a>
+</body>
+</html>
