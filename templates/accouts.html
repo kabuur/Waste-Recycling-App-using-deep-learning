@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{% static './css/bootstrap.min.css' %}"/>
+        
+       
+        
+        <title>django</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+          body{
+            background-color:#f7f5f5;
+          }
+          .HospitalRegistration input{
+            box-sizing: border-box;
+            
+            border-left:1px solid black;
+            border-right:none;
+            border-top:none;
+            
+            border-bottom: 2px solid black;
+            
+          }
+        </style> 
+    </head>
+    <body>
+       {% include "registration/NavAccounts.html" %}
+       {% block accounts %}
+        
+       {% endblock accounts %}
+        
+{% comment %}     
+       <script src="{% static './manual/imagecontrol.js' %}"></script>
+       <script src="{% static './manual/registerationHospital.js' %}"></script> {% endcomment %}
+    </body>
+</html>
