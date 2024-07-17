@@ -1,0 +1,78 @@
+
+<section class="container" >
+
+    <div class='row'>
+      <div class='col-lg-6'>
+  
+        <div  class="row">
+          <div class = "col-lg-6">
+          <form  method ="POST"  id = "all"  >{% csrf_token %}
+              <select name = 'select_ws' id = "select_ws">
+                <option value = "All">All</option>
+                <option value = "plastic">plastic</option>
+                <option value="cardboard">cardboard</option>
+                <option value = "glass">glass</option>
+                <option value = "metal">metal</option>
+                <option value = "paper">paper</option>
+                
+              </select>
+          </div>
+          {% comment %} classes =  {0:'cardboard', 1:'glass', 2:'metal', 3:'paper', 4:'plastic'} {% endcomment %}
+          <div class = "col-lg-6">
+            <input type="submit" value="Search" class=" btn btn-primary">
+          </div>
+        </form>
+          
+          
+      </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <h1>{{success}}</h1>
+      <div class ="col-lg-12">
+  
+        <table class="table col-lg-12 table-bordered border-dark">
+          <thead class = "table-dark">
+              <tr>
+              <th>#</th>
+              <th scope="col">Type</th>
+              <th scope="col">Date</th>
+              <th scope="col">Prediction</th>
+              
+          
+          
+              <th scope="col">Delete</th>
+              </tr>
+          </thead>
+          
+          
+             
+          
+              <tbody class="fs-9">
+                {% for filter_ws in filter_ws %}
+              <tr>
+              
+                  <td >{{forloop.counter}}</td>
+                  <td >{{filter_ws.Type}}</td>
+                  <td >{{filter_ws.Date}}</td>
+                  <td >{{filter_ws.Prediction}}</td>
+                  
+                 
+                  <td scope="col"><a href="{% url 'App:dashboard-delete' filter_ws.Image_Path  %}"><span class= "btn btn-danger">Delete</span></a></td>
+  
+                  
+                 
+              </tr>
+           
+            {% endfor %}
+              </tbody>
+          
+  
+  
+          
+  
+         
+      </table>
+       
+  

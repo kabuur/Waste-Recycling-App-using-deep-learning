@@ -1,6 +1,6 @@
 # predictor/views.py
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 # from .forms import ImageUploadForm
@@ -8,7 +8,7 @@ from .src.utils import predict_image
 from .models import West_Info
 
 
-from .src.dashboard import countRcycling,countNonRcycling,top_five
+from .src.dashboard import countRcycling,countNonRcycling,filter_ws
 
 
 # pridicting
@@ -68,16 +68,28 @@ def image_upload_view(request):
 def dashboard(request):
     count_ws =  West_Info.objects.count()
     
-    #  Pass the count to the template
- 
+    filter = filter_ws(request)
+        
     return render(request, 'App/Dashboard.html', {
         'recycling_count': countRcycling,
         'NonRcycling_count': countNonRcycling,
         "total": count_ws,
-        "top_five":top_five
+        "filter_ws": filter
+        
+    
         
         })
     
     # total of count ws 
     
 
+
+
+@login_required(login_url='/login')
+def deleteWSDahboard(request, id):
+ 
+
+    West_Info.objects.get(Image_Path = id).delete()
+        
+
+    return redirect('/')
